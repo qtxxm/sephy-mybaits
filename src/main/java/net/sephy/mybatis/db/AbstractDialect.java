@@ -38,12 +38,12 @@ public abstract class AbstractDialect implements Dialect {
 	}
 
 	@Override
-	public String getPagineSql(String origSql) {
+	public String getPagingSql(String origSql) {
 		return null;
 	}
 
 	@Override
-	public BoundSql getPagineBoundSql(Configuration configuration, BoundSql boundSql) {
+	public BoundSql getPagingBoundSql(Configuration configuration, BoundSql boundSql) {
 		return null;
 	}
 }

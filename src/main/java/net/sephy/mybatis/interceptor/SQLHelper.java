@@ -16,7 +16,7 @@
 
 package net.sephy.mybatis.interceptor;
 
-import net.sephy.mybatis.Paging;
+import net.sephy.mybatis.util.Paging;
 import net.sephy.mybatis.dialect.Dialect;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.executor.ErrorContext;
@@ -47,7 +47,7 @@ import java.util.regex.Pattern;
  * @author poplar.yfyang / thinkgem
  * @version 2013-8-28
  */
-public class SQLHelper {
+public abstract class SQLHelper {
 
 	/**
 	 * 对SQL参数(?)设值,参考org.apache.ibatis.executor.parameter.
@@ -146,9 +146,9 @@ public class SQLHelper {
 			// 解决MyBatis 分页foreach 参数失效 end
 			SQLHelper.setParameters(ps, mappedStatement, countBS, parameterObject);
 			rs = ps.executeQuery();
-			int count = 0;
+			long count = 0;
 			if (rs.next()) {
-				count = rs.getInt(1);
+				count = rs.getLong(1);
 			}
 			return count;
 		}
@@ -175,7 +175,7 @@ public class SQLHelper {
 	 */
 	public static String generatePageSql(String sql, Paging<Object> pagine, Dialect dialect) {
 		if (dialect.supportsLimit()) {
-			return dialect.getPagineSql(sql);
+			return dialect.getPagingSql(sql);
 		}
 		else {
 			return sql;
@@ -185,7 +185,7 @@ public class SQLHelper {
 	public static BoundSql generatePagingBoundSql(Configuration configuration, BoundSql boundSql,
 			Dialect dialect) {
 		if (dialect.supportsLimit()) {
-			return dialect.getPagineBoundSql(configuration, boundSql);
+			return dialect.getPagingBoundSql(configuration, boundSql);
 		}
 		else {
 			return boundSql;

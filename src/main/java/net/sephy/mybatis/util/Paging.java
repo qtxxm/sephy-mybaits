@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.sephy.mybatis;
+package net.sephy.mybatis.util;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.domain.AbstractPageRequest;

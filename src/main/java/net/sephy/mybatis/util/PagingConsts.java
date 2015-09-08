@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.sephy.mybatis.interceptor;
+package net.sephy.mybatis.util;
 
 public abstract class PagingConsts {
 

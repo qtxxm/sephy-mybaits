@@ -71,13 +71,13 @@ public class MySQLDialect extends AbstractDialect {
 	}
 
 	@Override
-	public String getPagineSql(String origSql) {
+	public String getPagingSql(String origSql) {
 		return new StringBuilder(origSql).append(" limit ? , ?").toString();
 	}
 
 	@Override
-	public BoundSql getPagineBoundSql(Configuration configuration, BoundSql boundSql) {
-		String pageSql = getPagineSql(boundSql.getSql());
+	public BoundSql getPagingBoundSql(Configuration configuration, BoundSql boundSql) {
+		String pageSql = getPagingSql(boundSql.getSql());
 		List<ParameterMapping> parameterMappings = new ArrayList<>(boundSql.getParameterMappings());
 		parameterMappings.add(new ParameterMapping.Builder(configuration, PagingConsts.PAGE_OFFSET,
 				Integer.class).build());

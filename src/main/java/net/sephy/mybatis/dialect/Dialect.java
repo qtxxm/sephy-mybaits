@@ -51,7 +51,7 @@ public interface Dialect {
 	 * @param origSql
 	 * @return
 	 */
-	String getPagineSql(String origSql);
+	String getPagingSql(String origSql);
 
-	BoundSql getPagineBoundSql(Configuration configuration, BoundSql orgiSql);
+	BoundSql getPagingBoundSql(Configuration configuration, BoundSql orgiSql);
 }
